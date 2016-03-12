@@ -4,6 +4,7 @@ This won't be a complete guide to every case but should illustrate some common p
 
 ## General style tips
 
+<!-- language: lang-js -->
 ```
 /**
  * This is my function that does something. #1
@@ -85,79 +86,83 @@ so that it is still readable and doesn't disappear to the right.
 1. Avoid mutable state. In other words, if you assign a 'variable' avoid changing it, because this will add complexity
 to your code.
 
-```
-// avoid
-var a = 5;
-a = 20;
+    <!-- language: lang-js -->
+    ```
+    // avoid
+    var a = 5;
+    a = 20;
 
-// prefer
-var a = 5;
-var a2 = 20;
+    // prefer
+    var a = 5;
+    var a2 = 20;
 
-// even better (stupid example)
-var a = 25;
+    // even better (stupid example)
+    var a = 25;
 
-```
+    ```
 
 2. Prefer iterating over an array as `[...].forEach(fn)` rather than as a `for () {}` loop. (Or `.map()`, or
 `.filter()`)
 
-```
-// avoid
-for (var i = 0; i < xs.length; i++) {
-    conbobulate(xs[i]);
-}
+    <!-- language: lang-js -->
+    ```
+    // avoid
+    for (var i = 0; i < xs.length; i++) {
+        conbobulate(xs[i]);
+    }
 
-// prefer (much cleaner)
-xs.forEach(function (x) {
-    conbobulate(x);
-});
-```
+    // prefer (much cleaner)
+    xs.forEach(function (x) {
+        conbobulate(x);
+    });
+    ```
 
 3. Prefer a functional style of code over side-effects. In other words, try to write functions that return a value
 instead of a `void` function that has a side-effect. If you need a side-effect, consider injecting that as a separate
 function:
 
-```
-// limited functionality:
-function printReport1(data) {
-    console.log("Year report");
-    console.log("Data 1", data[0]);
-    console.log("Data 2", data[1]);
-}
+    <!-- language: lang-js -->
+    ```
+    // this has limited functionality:
+    function printReport1(data) {
+        console.log("Year report");
+        console.log("Data 1", data[0]);
+        console.log("Data 2", data[1]);
+    }
 
-// more flexible:
-function printReport2(data, output) {
-    output("Year report");
-    output("Data 1", data[0]);
-    output("Data 2", data[1]);
-}
+    // more flexible:
+    function printReport2(data, output) {
+        output("Year report");
+        output("Data 1", data[0]);
+        output("Data 2", data[1]);
+    }
 
-// a stupid example, but returning a value instead:
-function prepareReport3(data, output) {
-    return [
-        ["Year report"],
-        ["Data 1", data[0]],
-        ["Data 2", data[1]],
-    ];
-}
-```
+    // a stupid example, but returning a value instead:
+    function prepareReport3(data, output) {
+        return [
+            ["Year report"],
+            ["Data 1", data[0]],
+            ["Data 2", data[1]],
+        ];
+    }
+    ```
 
 4. Avoid negations adding unnecessary complexity.
 
-```
-// avoid
-var x = y !== null
-    ? "food"
-    : "bard"
-;
+    <!-- language: lang-js -->
+    ```
+    // avoid
+    var x = y !== null
+        ? "food"
+        : "bard"
+    ;
 
-// prefer (easier not to think about the negative if expression can be reversed)
-var x = y === null
-    ? "bard"
-    : "food"
-;
-```
+    // prefer (easier not to think about the negative if expression can be reversed)
+    var x = y === null
+        ? "bard"
+        : "food"
+    ;
+    ```
 
 ## Naming things
 
@@ -165,21 +170,23 @@ Use `camelCase` for all variable and function names.
 
 If you have an abbreviation as part of the name avoid using all caps:
 
+<!-- language: lang-js -->
 ```
+// avoid
+getSQLQuery();
+carID = 12345;
+
 // prefer
 getSqlQuery();
 carId = 12345;
-
-// over
-getSQLQuery();
-carID = 12345;
 ```
 
 This choice is mainly because it is a pain in the ass to type rows of capitals. But also we want to separate the words
-clearly. In the second example, "SQL" seems to merge into "Query".
+clearly. In `getSQLQuery`, "SQL" seems to merge into "Query".
 
 If you have a function constructor (you will use the function with `new`) it should start with a capital letter:
 
+<!-- language: lang-js -->
 ```
 function Car(make, engine) {
     this.make = make;
@@ -194,6 +201,7 @@ var car1 = new Car("Ford Mustang", petrolV8);
 
 If you have short functions where you operate on one value, use `x` as a default name:
 
+<!-- language: lang-js -->
 ```
 [1, 2, 3]
     .map(function (x) {
@@ -207,9 +215,10 @@ for the result of an operation.
 
 Otherwise, use longer descriptive names:
 
+<!-- language: lang-js -->
 ```
-var contractMileageTotal = body.leaseContract.replacementCycle * body.leaseContract.contractMileageAnnual;
-var paymentProfile = body.leaseContract.paymentProfile.join(":");
+var contractMileageTotal = leaseContract.replacementCycle * leaseContract.contractMileageAnnual;
+var paymentProfile = leaseContract.paymentProfile.join(":");
 ```
 
 
@@ -217,6 +226,7 @@ var paymentProfile = body.leaseContract.paymentProfile.join(":");
 
 For browsers, we don't support IE8 unless this is a special requirement for a project so we can use ES5 features, such as:
 
+<!-- language: lang-js -->
 ```
 [0, 1, 2, 3, 4, 5]
     .filter(function (x) {
@@ -230,15 +240,15 @@ Object.defineProperty(...);
 
 ## EcmaScript 6 (ES6)
 
-For node, we're aiming to target node version 4.x (Argon) which allows lots of useful ES6 features. In particular:
+For node, we aim to target node version 4.x (Argon), which allows many useful ES6 features. In particular:
 
+<!-- language: lang-js -->
 ```
 // arrow function syntax (with lexical binding of this)
 // this really helps make more concise, readable code
 [0, 1, 2].map(x => x + 1);
 
-// const for "variables" that you don't want to change:
+// const for "variables" that shouldn't change once assigned:
 const fs = require("fs");
 ```
-
 
