@@ -5,7 +5,7 @@ This won't be a complete guide to every case but should illustrate some common p
 ## General style tips
 
 <!-- language: lang-js -->
-```
+```js
 /**
  * This is my function that does something. #1
  *
@@ -87,7 +87,7 @@ so that it is still readable and doesn't disappear to the right.
 to your code.
 
     <!-- language: lang-js -->
-    ```
+    ```js
     // avoid
     var a = 5;
     a = 20;
@@ -105,7 +105,7 @@ to your code.
 `.filter()`)
 
     <!-- language: lang-js -->
-    ```
+    ```js
     // avoid
     for (var i = 0; i < xs.length; i++) {
         conbobulate(xs[i]);
@@ -122,7 +122,7 @@ instead of a `void` function that has a side-effect. If you need a side-effect, 
 function:
 
     <!-- language: lang-js -->
-    ```
+    ```js
     // this has limited functionality:
     function printReport1(data) {
         console.log("Year report");
@@ -150,7 +150,7 @@ function:
 4. Avoid negations adding unnecessary complexity.
 
     <!-- language: lang-js -->
-    ```
+    ```js
     // avoid
     var x = y !== null
         ? "food"
@@ -171,7 +171,7 @@ Use `camelCase` for all variable and function names.
 If you have an abbreviation as part of the name avoid using all caps:
 
 <!-- language: lang-js -->
-```
+```js
 // avoid
 getSQLQuery();
 carID = 12345;
@@ -187,7 +187,7 @@ clearly. In `getSQLQuery`, "SQL" seems to merge into "Query".
 If you have a function constructor (you will use the function with `new`) it should start with a capital letter:
 
 <!-- language: lang-js -->
-```
+```js
 function Car(make, engine) {
     this.make = make;
     this.engine = engine;
@@ -202,7 +202,7 @@ var car1 = new Car("Ford Mustang", petrolV8);
 If you have short functions where you operate on one value, use `x` as a default name:
 
 <!-- language: lang-js -->
-```
+```js
 [1, 2, 3]
     .map(function (x) {
         return x + 1;
@@ -216,7 +216,7 @@ for the result of an operation.
 Otherwise, use longer descriptive names:
 
 <!-- language: lang-js -->
-```
+```js
 var contractMileageTotal = leaseContract.replacementCycle * leaseContract.contractMileageAnnual;
 var paymentProfile = leaseContract.paymentProfile.join(":");
 ```
@@ -227,7 +227,7 @@ var paymentProfile = leaseContract.paymentProfile.join(":");
 For browsers, we don't support IE8 unless this is a special requirement for a project so we can use ES5 features, such as:
 
 <!-- language: lang-js -->
-```
+```js
 [0, 1, 2, 3, 4, 5]
     .filter(function (x) {
         return x % 2 === 0;
@@ -243,7 +243,7 @@ Object.defineProperty(...);
 For node, we aim to target node version 4.x (Argon), which allows many useful ES6 features. In particular:
 
 <!-- language: lang-js -->
-```
+```js
 // arrow function syntax (with lexical binding of this)
 // this really helps make more concise, readable code
 [0, 1, 2].map(x => x + 1);

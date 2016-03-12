@@ -25,7 +25,7 @@ when switching between HTML and PHP.
 
 1. Always use the alternative form for PHP control statements.
 
-```
+```php
 <?php foreach (range(0, 5) as $i): ?>
     <p><?= $i ?></p>
 <?php endforeach; ?>
@@ -46,7 +46,7 @@ if (true) {
 
 2. Always indent PHP and HTML blocks alike.
 
-```
+```php
 <div class="truth">
     <?php if (true): ?>
         <blink>
@@ -58,7 +58,7 @@ if (true) {
 
 3. Use the short echo syntax.
 
-```
+```php
 <p>this is much <?= strtoupper("better") ?></p>
 
 <!-- rather than -->
