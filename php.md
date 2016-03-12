@@ -25,45 +25,73 @@ when switching between HTML and PHP.
 
 1. Always use the alternative form for PHP control statements.
 
-```php
-<?php foreach (range(0, 5) as $i): ?>
-    <p><?= $i ?></p>
-<?php endforeach; ?>
+    ```php
+    <?php foreach (range(0, 5) as $i): ?>
+        <p><?= $i ?></p>
+    <?php endforeach; ?>
 
-<?php if (true): ?>
-    <blink>the truth is out there</blink>
-<?php endif; ?>
+    <?php if (true): ?>
+        <blink>the truth is out there</blink>
+    <?php endif; ?>
 
-<?php
-// Exception: in a multiline PHP block revert to normal style:
-if (true) {
-    echo 'the truth is out there';
-}
-?>
+    <?php
+    // Exception: in a multiline PHP block revert to normal style:
+    if (true) {
+        echo 'the truth is out there';
+    }
+    ?>
 
-```
+    ```
 
 
-2. Always indent PHP and HTML blocks alike.
+2. Let PHP and HTML blocks each have their own level of indentation.
 
-```php
-<div class="truth">
+    ```php
+    <div class="truth">
+        <?php if (true): ?>
+            <blink>
+                the truth is out there
+            </blink>
+        <?php endif; ?>
+    </div>
+    ```
+    
+    Avoid
+    
+    ```php
+    <div class="truth">
     <?php if (true): ?>
         <blink>
             the truth is out there
         </blink>
     <?php endif; ?>
-</div>
-```
+    </div>
+    ```
 
 3. Use the short echo syntax.
 
-```php
-<p>this is much <?= strtoupper("better") ?></p>
+    ```php
+    <p>this is much <?= strtoupper("better") ?></p>
+    ```
 
-<!-- rather than -->
+    Avoid
 
-<p>this is much <?php echo strtoupper("worse"); ?></p>
-```
+    ```php
+    <p>this is much <?php echo strtoupper("worse"); ?></p>
+    ```
 
 4. Don't start accessing the database within a template, sending emails, or any other weird shit like that.
+
+    ```php
+    <?php
+    $conn = mysql_connect('foobar', ...);
+    ...
+    $result = mysql_query('select * from widgets where id=' . $_POST['security_hole'], $conn);
+    ?>
+    
+    <?php while ($row = mysql_fetch_assoc($result)): ?>
+        <?= $row['name'] ?>
+    <?php endwhile; ?>
+    ```
+    
+    You shouldn't be using `mysql_` anyway because it is deprecated, but that's a whole other story.
