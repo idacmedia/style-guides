@@ -44,6 +44,11 @@ if (sunny === true) { // #9 #11
     takeOffCoat();
 }
 
+var abc = janek === null // #12
+    ? "pozniack"
+    : "sham shirt"
+;
+
 ```
 
 From this you can see:
@@ -72,14 +77,42 @@ so that it is still readable and doesn't disappear to the right.
 
 11. Always use a `===` / `!==` equality check rather than `==` / `!=` to avoid potential bugs.
 
+12. Ternary expressions are good, but separate and indent over two lines if this improves clarity.
 
-## Mutability, side-effects, and other good practice
+
+## Other best practice
 
 1. Avoid mutable state. In other words, if you assign a 'variable' avoid changing it, because this will add complexity
 to your code.
 
+```
+// avoid
+var a = 5;
+a = 20;
+
+// prefer
+var a = 5;
+var a2 = 20;
+
+// even better (stupid example)
+var a = 25;
+
+```
+
 2. Prefer iterating over an array as `[...].forEach(fn)` rather than as a `for () {}` loop. (Or `.map()`, or
 `.filter()`)
+
+```
+// avoid
+for (var i = 0; i < xs.length; i++) {
+    conbobulate(xs[i]);
+}
+
+// prefer (much cleaner)
+xs.forEach(function (x) {
+    conbobulate(x);
+});
+```
 
 3. Prefer a functional style of code over side-effects. In other words, try to write functions that return a value
 instead of a `void` function that has a side-effect. If you need a side-effect, consider injecting that as a separate
@@ -110,6 +143,22 @@ function prepareReport3(data, output) {
 }
 ```
 
+4. Avoid negations adding unnecessary complexity.
+
+```
+// avoid
+var x = y !== null
+    ? "food"
+    : "bard"
+;
+
+// prefer (easier not to think about the negative if expression can be reversed)
+var x = y === null
+    ? "bard"
+    : "food"
+;
+```
+
 ## Naming things
 
 Use `camelCase` for all variable and function names.
@@ -119,13 +168,15 @@ If you have an abbreviation as part of the name avoid using all caps:
 ```
 // prefer
 getSqlQuery();
+carId = 12345;
 
 // over
 getSQLQuery();
+carID = 12345;
 ```
 
-This choice is mainly because it is a pain in the ass to type rows of capitals, but also it doesn't separate the words
-as well. In our example, "SQL" merges into "Query".
+This choice is mainly because it is a pain in the ass to type rows of capitals. But also we want to separate the words
+clearly. In the second example, "SQL" seems to merge into "Query".
 
 If you have a function constructor (you will use the function with `new`) it should start with a capital letter:
 
@@ -161,9 +212,10 @@ var contractMileageTotal = body.leaseContract.replacementCycle * body.leaseContr
 var paymentProfile = body.leaseContract.paymentProfile.join(":");
 ```
 
+
 ## EcmaScript 5 (ES5)
 
-For browsers we don't support IE8 unless this is a special requirement for a project so we can use ES5 features, such as:
+For browsers, we don't support IE8 unless this is a special requirement for a project so we can use ES5 features, such as:
 
 ```
 [0, 1, 2, 3, 4, 5]
@@ -178,7 +230,7 @@ Object.defineProperty(...);
 
 ## EcmaScript 6 (ES6)
 
-For node we're aiming to target node version 4.x (Argon) which allows lots of useful ES6 features. In particular:
+For node, we're aiming to target node version 4.x (Argon) which allows lots of useful ES6 features. In particular:
 
 ```
 // arrow function syntax (with lexical binding of this)

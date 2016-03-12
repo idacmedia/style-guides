@@ -2,18 +2,18 @@
 
 We aim to follow the [Symfony Coding Standards](https://symfony.com/doc/current/contributing/code/standards.html).
 
-And also relevant PSR standards where not conflicting with the Symfony Coding Standards:
+Also apply relevant PSR standards where not conflicting with the Symfony Coding Standards:
 
 http://www.php-fig.org/psr/ (1, 2 and 4)
 
-And of course, using `composer` for package management is pretty much THE standard.
+Use `composer` for package management. It's pretty much THE standard.
 
 
 ## PHP versions
 
-Code should run on PHP v5.5 at the moment.
+Code should run on PHP v5.5 at the time of writing.
 
-Support for v5.5 will be dropped on 10 Jul 2015, and we should have all systems upgraded to v5.6 by then.
+Support for v5.5 will be dropped on 10 Jul 2016, and we should have all systems upgraded to v5.6 by then.
 
 See: https://secure.php.net/supported-versions.php
 
@@ -63,7 +63,7 @@ if (true) {
 
 <!-- rather than -->
 
-<p>this is much <?php echo strtoupper("better"); ?></p>
+<p>this is much <?php echo strtoupper("worse"); ?></p>
 ```
 
 4. Don't start accessing the database within a template, sending emails, or any other weird shit like that.
