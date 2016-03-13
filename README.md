@@ -4,9 +4,10 @@
 
 - [JavaScript](./javascript.md)
 - [PHP](./php.md)
-- [CSS and SCSS](./cssAndScss.md)
+- [Git strategy](./gitStrategy.md)
 
 ### TODO
 
-- [HTML]
+- [HTML](./html.md)
+- [CSS and SCSS](./cssAndScss.md)
 

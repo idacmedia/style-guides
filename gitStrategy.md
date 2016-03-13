@@ -82,18 +82,12 @@ branch.
 Set up git aliases to save your fingers! This can be set up in your `~/.gitconfig` file under the `[alias]` section.
 Some common shortcuts are:
 
-co
-: checkout
-
-b
-: branch
-
-cm
-: commit -m
-
-s
-: status
-
+<dl>
+    <dt>co</dt><dd>checkout</dd>
+    <dt>b</dt><dd>branch</dd>
+    <dt>cm</dt><dd>commit -m</dd>
+    <dt>s</dt><dd>status</dd>
+</dl>
 
 Set up a global `.gitignore` with common ignore patterns for your IDE and system. These don't belong in a project 
 `.gitignore` file.
