@@ -11,7 +11,12 @@ Use `composer` for package management. It's pretty much THE standard.
 
 ## PHP versions
 
-Code should run on PHP v5.5 at the time of writing.
+Code should run on PHP v5.5 at the time of writing. This means you can and should:
+
+- Always use short array syntax `[1, 2, 3]` in preference to long `array(1, 2, 3)`.
+- Use generators (`yield`) to simplify iterators.
+- Use `finally` blocks to close resources.
+- You can use traits to reuse code (though not always ‘should’).
 
 Support for v5.5 will be dropped on 10 Jul 2016, and we should have all systems upgraded to v5.6 by then.
 
